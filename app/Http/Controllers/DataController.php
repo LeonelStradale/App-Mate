@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Metric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -9,10 +10,12 @@ class DataController extends Controller
 {
     public function welcome()
     {
-        $data = HTTP::get('http://app.test/PHP-API/getData.php');
+        // $data = HTTP::get('http://app.test/PHP-API/getData.php');
 
-        $dataArray = $data->json();
+        // $dataArray = $data->json();
 
-        return view('welcome', compact('dataArray'));
+        $data = Metric::all();
+
+        return view('welcome', compact('data'));
     }
 }

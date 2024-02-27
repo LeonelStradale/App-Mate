@@ -28,19 +28,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataArray as $data)
+                                @foreach ($data as $item)
                                     <tr>
                                         <th scope="row">
-                                            {{ $data['id'] }}
+                                            {{ $item->id }}
                                         </th>
                                         <td>
-                                            {{ $data['room_temperature'] }} °C
+                                            {{ $item->room_temperature }} °C
                                         </td>
                                         <td>
-                                            {{ $data['liquid_temperature'] }} °C
+                                            {{ $item->liquid_temperature }} °C
                                         </td>
                                         <td>
-                                            {{ $data['measurement_time'] }}
+                                            {{ $item->measurement_time }}
                                         </td>
                                     </tr>
                                 @endforeach
