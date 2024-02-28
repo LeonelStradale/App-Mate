@@ -47,12 +47,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <form action="">
+                    <form action="{{ route('getPrediction') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="time" class="form-label">
                                 Selecciona una hora a predecir:
                             </label>
-                            <input type="time" class="form-control" id="time">
+                            <input type="time" name="hour" step="1" class="form-control" id="time">
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">

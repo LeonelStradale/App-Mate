@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DataController::class, 'welcome'])->name('welcome');
+
+Route::get('/showData', [DataController::class, 'showData'])->name('showData');
+
+Route::post('/getPrediction', [DataController::class, 'getPrediction'])->name('getPrediction');
