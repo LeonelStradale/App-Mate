@@ -10,7 +10,7 @@ class DataController extends Controller
 {
     public function welcome()
     {
-        $data = Metric::all();
+        $data = Metric::take(2)->get();
 
         return view('welcome', compact('data'));
     }

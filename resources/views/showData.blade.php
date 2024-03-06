@@ -16,49 +16,18 @@
             <div class="card-header bg-dark text-white">Predicción</div>
             <div class="card-body">
                 <div class="row">
-                    <!-- Table -->
-                    <div class="col-md-12">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Temperatura Ambiente</th>
-                                    <th scope="col">Temperatura Liquida</th>
-                                    <th scope="col">Hora de Medición</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <th scope="row">
-                                            {{ $item->id }}
-                                        </th>
-                                        <td>
-                                            {{ $item->room_temperature }} °C
-                                        </td>
-                                        <td>
-                                            {{ $item->liquid_temperature }} °C
-                                        </td>
-                                        <td>
-                                            {{ $item->measurement_time }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <tr>
-                                    <th scope="row">
-                                        3
-                                    </th>
-                                    <td>
-                                        {{ $rt }} °C
-                                    </td>
-                                    <td>
-                                        {{ $prediction }} °C
-                                    </td>
-                                    <td>
-                                        {{ $hour }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-sm-12 mb-3 mb-sm-0">
+                        <div class="card text-bg-danger mb-3">
+                            <div class="card-header">
+                                Datos
+                            </div>
+                            <div class="card-body">
+                                <h5 class="h5">
+                                    Temperatura Ambiente: {{ $rt }} °C | Grados: {{ $prediction }} °C |
+                                    Hora: {{ $hour }}
+                                </h5>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <!-- Values -->
@@ -99,6 +68,37 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <hr>
+                    <!-- Table -->
+                    <div class="col-md-12">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Temperatura Ambiente</th>
+                                    <th scope="col">Temperatura Liquida</th>
+                                    <th scope="col">Hora de Medición</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $item->id }}
+                                        </th>
+                                        <td>
+                                            {{ $item->room_temperature }} °C
+                                        </td>
+                                        <td>
+                                            {{ $item->liquid_temperature }} °C
+                                        </td>
+                                        <td>
+                                            {{ $item->measurement_time }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
