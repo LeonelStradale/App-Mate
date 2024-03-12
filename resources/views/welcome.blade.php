@@ -21,6 +21,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th scope="col">Check</th>
                                     <th scope="col">#</th>
                                     <th scope="col">Temperatura Ambiente</th>
                                     <th scope="col">Temperatura Liquida</th>
@@ -28,38 +29,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <th scope="row">
-                                            {{ $item->id }}
-                                        </th>
-                                        <td>
-                                            {{ $item->room_temperature }} °C
-                                        </td>
-                                        <td>
-                                            {{ $item->liquid_temperature }} °C
-                                        </td>
-                                        <td>
-                                            {{ $item->measurement_time }}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <form action="{{ route('getPrediction') }}" method="POST">
+                                    @csrf
+                                    @foreach ($data as $item)
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" name="selected_ids[]"
+                                                    value="{{ $item->id }}">
+                                            </th>
+                                            <th scope="row">
+                                                {{ $item->id }}
+                                            </th>
+                                            <td>
+                                                {{ $item->room_temperature }} °C
+                                            </td>
+                                            <td>
+                                                {{ $item->liquid_temperature }} °C
+                                            </td>
+                                            <td>
+                                                {{ $item->measurement_time }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                             </tbody>
                         </table>
+                        <div class="mx-3">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
-                    <form action="{{ route('getPrediction') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="time" class="form-label">
-                                Selecciona una hora a predecir:
-                            </label>
-                            <input type="time" name="hour" step="1" class="form-control" id="time">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">
-                                Procesar
-                            </button>
-                        </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label">
+                            Selecciona una hora a predecir:
+                        </label>
+                        <input type="time" name="hour" step="1" class="form-control" id="time">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            Procesar
+                        </button>
+                    </div>
                     </form>
                 </div>
             </div>

@@ -10,7 +10,7 @@ class DataController extends Controller
 {
     public function welcome()
     {
-        $data = Metric::take(2)->get();
+        $data = Metric::orderBy('id', 'asc')->paginate(2);
 
         return view('welcome', compact('data'));
     }
@@ -25,10 +25,15 @@ class DataController extends Controller
         /* Mediciones */
         $data = Metric::all();
 
+        $selectedIds = $request->input('selected_ids', []);
+
+        // dd($selectedIds);
+
+        // Validar si se han seleccionado registros
+        $firstRecord = Metric::find($selectedIds[0]);
+        $secondRecord = Metric::find($selectedIds[1]);
         /* Minutos de Diferencia */
         $hour = $request->hour;
-
-        $firstRecord = Metric::find(1);
 
         $recordHour = Carbon::createFromFormat('H:i:s', $firstRecord->measurement_time);
 
@@ -44,8 +49,6 @@ class DataController extends Controller
         $c = $firstDegrees - $rt; // Valor C
 
         /* K */
-        $secondRecord = Metric::find(2);
-
         $secondDegrees = $secondRecord->liquid_temperature;
 
         $subtraction = $secondDegrees - $rt;
