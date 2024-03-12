@@ -10,7 +10,7 @@ class DataController extends Controller
 {
     public function welcome()
     {
-        $data = Metric::orderBy('id', 'asc')->paginate(2);
+        $data = Metric::orderBy('id', 'asc')->paginate(10);
 
         return view('welcome', compact('data'));
     }
